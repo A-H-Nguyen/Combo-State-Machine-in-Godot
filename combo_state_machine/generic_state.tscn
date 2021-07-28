@@ -1,0 +1,31 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scripts/state_class.gd" type="Script" id=1]
+[ext_resource path="res://Assets/state_idle.png" type="Texture" id=2]
+[ext_resource path="res://Assets/progress_bar_tex1.png" type="Texture" id=3]
+[ext_resource path="res://Assets/progress_bar_tex2.png" type="Texture" id=4]
+
+[node name="generic_state" type="Sprite"]
+position = Vector2( 100, 100 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+state_duration = 0.55
+
+[node name="TextureProgress" type="TextureProgress" parent="."]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = -89.0
+margin_top = -90.0
+margin_right = -49.0
+margin_bottom = -50.0
+rect_scale = Vector2( 4.50378, 1.05617 )
+texture_under = ExtResource( 3 )
+texture_progress = ExtResource( 4 )
+nine_patch_stretch = true
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="state_time" type="Timer" parent="."]
+one_shot = true
+[connection signal="timeout" from="state_time" to="." method="_on_state_time_timeout"]
